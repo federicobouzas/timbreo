@@ -1,0 +1,33 @@
+<ion-view view-title="Relevamiento" ng-controller="TimbreoController as timbreoCtrl">
+    <ion-content class="has-header">
+        <div class="card" ng-repeat="(numero, pregunta) in preguntas">
+            <div class="item item-divider">{{numero}}) {{pregunta.texto}}</div>
+            <div class="item item-text-wrap">
+                <div class="button-bar last">
+                    <a class="button" ng-click="seleccionar(numero, value)" ng-repeat="(value, texto) in pregunta.opciones" ng-class="formulario.respuestas[numero] == value ? 'button-dark' : 'button-outline button-stable'">{{value}}</a>
+                </div> 
+            </div>
+        </div>
+        <div class="card">
+            <div class="item item-divider">3) Cual dirias que es la principal problematica del pais?</div>
+            <div class="item item-text-wrap">
+                <div class="button-bar">
+                    <a class="button" ng-click="seleccionar(3, 'Inflacion');" ng-class="formulario.respuestas[3] == 'Inflacion' ? 'button-dark' : 'button-outline button-stable'">Inflación</a>
+                    <a class="button" ng-click="seleccionar(3, 'Seguridad');" ng-class="formulario.respuestas[3] == 'Seguridad' ? 'button-dark' : 'button-outline button-stable'">Seguridad</a>
+                </div> 
+                <div class="button-bar">
+                    <a class="button" ng-click="seleccionar(3, 'Corrupcion');" ng-class="formulario.respuestas[3] == 'Corrupcion' ? 'button-dark' : 'button-outline button-stable'">Corrupción</a>
+                    <a class="button" ng-click="seleccionar(3, 'Educacion');" ng-class="formulario.respuestas[3] == 'Educacion' ? 'button-dark' : 'button-outline button-stable'">Educación</a>
+                </div>   
+                <div class="button-bar last">
+                    <a class="button" ng-click="seleccionar(3, 'Empleo');" ng-class="formulario.respuestas[3] == 'Empleo' ? 'button-dark' : 'button-outline button-stable'">Empleo</a>
+                    <a class="button" ng-click="seleccionar(3, 'Pobreza');" ng-class="formulario.respuestas[3] == 'Pobreza' ? 'button-dark' : 'button-outline button-stable'">Pobreza</a>
+                    <a class="button" ng-click="seleccionar(3, 'Salud');" ng-class="formulario.respuestas[3] == 'Salud' ? 'button-dark' : 'button-outline button-stable'">Salud</a>
+                </div>  
+            </div>
+        </div>
+        <div class="padding">
+            <button class="button button-block button-energized" ng-click="guardar()">Guardar</button>
+        </div>
+    </ion-content>
+</ion-view>

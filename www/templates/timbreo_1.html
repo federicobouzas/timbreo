@@ -1,0 +1,15 @@
+<ion-view view-title="Relevamiento" ng-controller="TimbreoController as timbreoCtrl">
+    <ion-content class="has-header">
+        <div class="card" ng-repeat="(numero, pregunta) in preguntas">
+            <div class="item item-divider">{{numero}}) {{pregunta.texto}}</div>
+            <div class="item item-text-wrap no-padding">
+                <ion-list>
+                    <ion-radio ng-model="pregunta.respuesta" ng-repeat="(value, texto) in pregunta.opciones" ng-value="value">{{texto}}</ion-radio>
+                </ion-list>
+            </div>
+        </div>
+        <div class="padding">
+            <button class="button button-block button-balanced" ng-click="guardar()">Guardar</button>
+        </div>
+    </ion-content>
+</ion-view>

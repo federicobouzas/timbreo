@@ -1,0 +1,32 @@
+<ion-view view-title="Timbreo" ng-controller="LoginController">
+    <ion-content class="has-header">
+        <form ng-submit="login()">
+            <div class="item item-divider">
+                Ingresa tu informacion por unica vez.
+            </div>
+            <div class="list list-inset">
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Email</span>
+                    <input type="text" placeholder="ejemplo@tuemail.com" ng-model="user.email">
+                </label>
+                <label class="item item-input item-select">
+                    <span class="input-label">Comuna</span>
+                    <select ng-model="user.comuna">
+                        <option ng-repeat="comuna in comunas" ng-value="comuna">{{comuna}}</option>
+                    </select>
+                </label>
+                <label class="item item-input item-select">
+                    <span class="input-label">Color</span>
+                    <select ng-model="user.color">
+                        <option ng-repeat="color in colores" ng-value="color">{{color}}</option>
+                    </select>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Mapa Número</span>
+                    <input type="number" ng-model="user.mapa">
+                </label>
+                <input type="submit" class="button button-block button-balanced" value="Ingresar" />
+            </div>
+        </form>
+    </ion-content>
+</ion-view>
