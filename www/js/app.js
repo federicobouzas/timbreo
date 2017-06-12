@@ -49,30 +49,40 @@ angular.module('timbreo', ['ionic', 'ngCordova'])
             };
         })
 
-        .controller('TimbreoController', function ($rootScope, $scope, PouchDB, $ionicPopup, $timeout) {
+        .controller('TimbreoController', function ($rootScope, $scope, PouchDB, $ionicPopup, $timeout, $state) {
             var dbLocal = new PouchDB('timbreo');
-            PouchDB.replicate(dbLocal, 'http://127.0.0.1:5984/timbreo', {live: true, retry: true});
+            PouchDB.replicate(dbLocal, 'http://eideoos.com:5984/timbreo', {live: true, retry: true});
             $scope.preguntas = {
                 1: {
-                    texto: 'Que te parece la gestion de Macri?',
+                    texto: '¿Cómo evaluas hasta el momento la gestión del Presidente Mauricio Macri?',
                     opciones: {"MB": "Muy Buena", "B": "Buena", "R": "Regular", "M": "Mala", "MM": "Muy Mala"}
                 },
                 2: {
-                    texto: 'Que te parece la gestion de HRL?',
+                    texto: '¿Cómo evaluas hasta el momento la gestión de HRL como Jefe de Gobierno de la Ciudad?',
                     opciones: {"MB": "Muy Buena", "B": "Buena", "R": "Regular", "M": "Mala", "MM": "Muy Mala"}
-                },
+                }
             };
+            $scope.areas = ['Ingraestructura y Obra Pública', 'Relaciones Exteriores', 'Educación', 'Economía', 'Salud', 'Desarrollo Social'];
             var resetForm = function () {
                 $scope.formulario = {user: $rootScope.user, position: {}, respuestas: {}};
             };
             $scope.seleccionar = function (numero, valor) {
                 $scope.formulario.respuestas[numero] = valor;
             };
+            $scope.seleccionarMultiple = function (numero, seccion, valor) {
+                $scope.formulario.respuestas[numero] = $scope.formulario.respuestas[numero] || {};
+                $scope.formulario.respuestas[numero][seccion] = valor;
+            };
+            $scope.exit = function() {
+                $rootScope.user = {};
+                $state.go("login");
+            };
             $scope.guardar = function () {
                 var formulario = $scope.formulario;
                 navigator.geolocation.getCurrentPosition(function (position) {
                     formulario.position.latitude = position.coords.latitude;
                     formulario.position.longitude = position.coords.longitude;
+                    formulario.time = new Date().getTime();
                     dbLocal.post(formulario);
                 }, function (error) {
                     console.log('code: ' + error.code + '\nmessage: ' + error.message + '\n');

@@ -1,7 +1,11 @@
-<ion-view view-title="Relevamiento" ng-controller="TimbreoController as timbreoCtrl">
+<ion-view view-title="Nueva Carga" ng-controller="TimbreoController">
+    <div class="bar bar-header bar-energized">
+        <h1 class="title">Timbreo - Nueva Carga</h1>
+        <button class="button icon ion-close-circled" ng-click="exit()"></button>
+    </div>
     <ion-content class="has-header">
         <div class="card" ng-repeat="(numero, pregunta) in preguntas">
-            <div class="item item-divider">{{numero}}) {{pregunta.texto}}</div>
+            <div class="item item-divider item-text-wrap">{{numero}}) {{pregunta.texto}}</div>
             <div class="item item-text-wrap">
                 <div class="button-bar last">
                     <a class="button" ng-click="seleccionar(numero, value)" ng-repeat="(value, texto) in pregunta.opciones" ng-class="formulario.respuestas[numero] == value ? 'button-dark' : 'button-outline button-stable'">{{value}}</a>
@@ -9,7 +13,7 @@
             </div>
         </div>
         <div class="card">
-            <div class="item item-divider">3) Cual dirias que es la principal problematica del pais?</div>
+            <div class="item item-divider item-text-wrap">3) ¿Cuál dirias que es la principal problemática del país?</div>
             <div class="item item-text-wrap">
                 <div class="button-bar">
                     <a class="button" ng-click="seleccionar(3, 'Inflacion');" ng-class="formulario.respuestas[3] == 'Inflacion' ? 'button-dark' : 'button-outline button-stable'">Inflación</a>
@@ -24,6 +28,15 @@
                     <a class="button" ng-click="seleccionar(3, 'Pobreza');" ng-class="formulario.respuestas[3] == 'Pobreza' ? 'button-dark' : 'button-outline button-stable'">Pobreza</a>
                     <a class="button" ng-click="seleccionar(3, 'Salud');" ng-class="formulario.respuestas[3] == 'Salud' ? 'button-dark' : 'button-outline button-stable'">Salud</a>
                 </div>  
+            </div>
+        </div>
+        <div class="card">
+            <div class="item item-divider item-text-wrap">4) ¿Cómo calificarías cada una de estas áreas de gobierno con una escala del 1 al 10?</div>
+            <div class="item item-text-wrap" ng-repeat="area in areas">
+                {{area}}
+                <div class="button-bar last">
+                    <a class="button" ng-repeat="value in [1,2,3,4,5,6,7,8,9,10]" ng-click="seleccionarMultiple(4, area, value)" ng-class="formulario.respuestas[4][area] == value ? 'button-dark' : 'button-outline button-stable'">{{value}}</a>
+                </div> 
             </div>
         </div>
         <div class="padding">
