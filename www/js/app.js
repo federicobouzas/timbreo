@@ -40,16 +40,42 @@ angular.module('timbreo', ['ionic', 'ngCordova'])
             return PouchDB;
         })
 
-        .controller('LoginController', function ($rootScope, $scope, $state) {
+        .controller('LoginController', function ($ionicPopup, $rootScope, $scope, $state, PouchDB) {
+            //var dbLocal = new PouchDB('timbreo');
+            //dbLocal.destroy();
             $scope.colores = ['Naranja', 'Azul', 'Rosa'];
             $scope.comunas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-            $rootScope.user = {'email': 'federicobouzas@gmail.com', 'comuna': '5', 'color': 'Naranja', 'mapa': 22};
+            //$rootScope.user = {'identificacion': 'federicobouzas@gmail.com', 'comuna': '5', 'color': 'Naranja', 'mapa': 22};
+            $rootScope.user = {};
             $scope.login = function () {
+                var errores = [];
+                if (!$rootScope.user.identificacion || $rootScope.user.identificacion == "") {
+                    errores.push("- Indentificación requerida.");
+                }
+                if (!$rootScope.user.comuna || $rootScope.user.comuna == "") {
+                    errores.push("- Comuna requerida");
+                }
+                if (!$rootScope.user.color || $rootScope.user.color == "") {
+                    errores.push("- Color de Zona requerido.");
+                }
+                if (!$rootScope.user.mapa || $rootScope.user.mapa == "") {
+                    errores.push("- Número de Zona requerido.");
+                } else if (isNaN($rootScope.user.mapa) || $rootScope.user.mapa < 1) {
+                    errores.push("- Número de Zona incorrecto.");
+                }
+                if (errores.length) {
+                    $ionicPopup.alert({
+                        title: '¡Error de Ingreso!',
+                        template: '<ul><li>' + errores.join('</li><li>') + '</li></ul>',
+                        buttons: [{text: '<b>OK</b>', type: 'button-balanced'}]
+                    });
+                    return;
+                }
                 $state.go("timbreo");
             };
         })
 
-        .controller('TimbreoController', function ($rootScope, $scope, PouchDB, $ionicPopup, $timeout, $state) {
+        .controller('TimbreoController', function ($ionicScrollDelegate, $rootScope, $scope, PouchDB, $ionicPopup, $timeout, $state) {
             var dbLocal = new PouchDB('timbreo');
             PouchDB.replicate(dbLocal, 'http://eideoos.com:5984/timbreo', {live: true, retry: true});
             $scope.preguntas = {
@@ -73,25 +99,29 @@ angular.module('timbreo', ['ionic', 'ngCordova'])
                 $scope.formulario.respuestas[numero] = $scope.formulario.respuestas[numero] || {};
                 $scope.formulario.respuestas[numero][seccion] = valor;
             };
-            $scope.exit = function() {
+            $scope.exit = function () {
                 $rootScope.user = {};
                 $state.go("login");
             };
             $scope.guardar = function () {
                 var formulario = $scope.formulario;
+                formulario.time = new Date().getTime();
+                console.log("start GEO");
                 navigator.geolocation.getCurrentPosition(function (position) {
+                    console.log("ok GEO");
                     formulario.position.latitude = position.coords.latitude;
                     formulario.position.longitude = position.coords.longitude;
-                    formulario.time = new Date().getTime();
                     dbLocal.post(formulario);
                 }, function (error) {
                     console.log('code: ' + error.code + '\nmessage: ' + error.message + '\n');
+                    dbLocal.post(formulario);
                 });
                 var alertPopup = $ionicPopup.alert({
-                    title: 'Formulario guardado!',
-                    template: '<ion-icon name="star"></ion-icon>',
+                    title: '¡Formulario guardado!',
+                    template: '<div class="thumbs-up"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></div>',
                     buttons: []
                 });
+                $ionicScrollDelegate.scrollTop();
                 $timeout(function () {
                     alertPopup.close();
                 }, 3000);

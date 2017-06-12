@@ -9,8 +9,8 @@
             </div>
             <div class="list list-inset">
                 <label class="item item-input item-stacked-label">
-                    <span class="input-label">Email</span>
-                    <input type="text" placeholder="ejemplo@tuemail.com" ng-model="user.email">
+                    <span class="input-label">Indentificación</span>
+                    <input type="text" placeholder="Nombre/DNI/Email" ng-model="user.identificacion">
                 </label>
                 <label class="item item-input item-select">
                     <span class="input-label">Comuna</span>
@@ -28,8 +28,9 @@
                     <span class="input-label">Número de Zona</span>
                     <input type="number" class="comuna" ng-model="user.mapa">
                 </label>
-                <input type="submit" class="button button-block button-energized" value="Ingresar" />
+                <input type="submit" class="button button-block button-balanced" value="Ingresar" />
             </div>
         </form>
+        {{documentos}}
     </ion-content>
 </ion-view>

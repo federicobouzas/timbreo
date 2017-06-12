@@ -27,3 +27,9 @@
     right: 10px;
     padding: 0 !important;
 }
+
+.thumbs-up {
+    font-size: 45px;
+    text-align: center;
+    width: 100%;
+}
