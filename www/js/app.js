@@ -43,10 +43,10 @@ angular.module('timbreo', ['ionic', 'ngCordova'])
         .controller('LoginController', function ($ionicPopup, $rootScope, $scope, $state, PouchDB) {
             //var dbLocal = new PouchDB('timbreo');
             //dbLocal.destroy();
-            $scope.colores = ['Naranja', 'Azul', 'Rosa'];
+            $scope.colores = ['Naranja', 'Azul', 'Verde', 'Rosa', 'Amarillo'];
             $scope.comunas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-            $rootScope.user = {'identificacion': 'federicobouzas@gmail.com', 'comuna': '5', 'color': 'Naranja', 'mapa': 22};
-            //$rootScope.user = {};
+            //$rootScope.user = {'identificacion': 'federicobouzas@gmail.com', 'comuna': '5', 'color': 'Naranja', 'mapa': 22};
+            $rootScope.user = {};
             $scope.login = function () {
                 var errores = [];
                 if (!$rootScope.user.identificacion || $rootScope.user.identificacion == "") {

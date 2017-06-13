@@ -55,7 +55,8 @@
             "cordova-plugin-geolocation": {}
         },
         "platforms": [
-            "android"
+            "android",
+            "ios"
         ]
     }
 }
