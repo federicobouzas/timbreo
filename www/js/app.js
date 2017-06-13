@@ -45,8 +45,8 @@ angular.module('timbreo', ['ionic', 'ngCordova'])
             //dbLocal.destroy();
             $scope.colores = ['Naranja', 'Azul', 'Rosa'];
             $scope.comunas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-            //$rootScope.user = {'identificacion': 'federicobouzas@gmail.com', 'comuna': '5', 'color': 'Naranja', 'mapa': 22};
-            $rootScope.user = {};
+            $rootScope.user = {'identificacion': 'federicobouzas@gmail.com', 'comuna': '5', 'color': 'Naranja', 'mapa': 22};
+            //$rootScope.user = {};
             $scope.login = function () {
                 var errores = [];
                 if (!$rootScope.user.identificacion || $rootScope.user.identificacion == "") {
@@ -80,11 +80,35 @@ angular.module('timbreo', ['ionic', 'ngCordova'])
             PouchDB.replicate(dbLocal, 'http://eideoos.com:5984/timbreo', {live: true, retry: true});
             $scope.preguntas = {
                 1: {
+                    tipo: 'simple.estado',
                     texto: '¿Cómo evaluas hasta el momento la gestión del Presidente Mauricio Macri?',
                     opciones: {"MB": "Muy Buena", "B": "Buena", "R": "Regular", "M": "Mala", "MM": "Muy Mala"}
                 },
                 2: {
+                    tipo: 'simple.estado',
                     texto: '¿Cómo evaluas hasta el momento la gestión de HRL como Jefe de Gobierno de la Ciudad?',
+                    opciones: {"MB": "Muy Buena", "B": "Buena", "R": "Regular", "M": "Mala", "MM": "Muy Mala"}
+                }
+            };
+            $scope.preguntas2 = {
+                8: {
+                    tipo: 'simple.estado',
+                    texto: '¿Qué imagen tenés de Mauricio Macri?',
+                    opciones: {"MB": "Muy Buena", "B": "Buena", "R": "Regular", "M": "Mala", "MM": "Muy Mala"}
+                },
+                9: {
+                    tipo: 'simple.estado',
+                    texto: '¿Qué imagen tenés de Horacio Rodriguez Larreta?',
+                    opciones: {"MB": "Muy Buena", "B": "Buena", "R": "Regular", "M": "Mala", "MM": "Muy Mala"}
+                },
+                10: {
+                    tipo: 'simple.estado',
+                    texto: '¿Qué imagen tenés de Elisa Lilita Carrió?',
+                    opciones: {"MB": "Muy Buena", "B": "Buena", "R": "Regular", "M": "Mala", "MM": "Muy Mala"}
+                },
+                11: {
+                    tipo: 'simple.estado',
+                    texto: '¿Qué imagen tenés de Martín Lousteau?',
                     opciones: {"MB": "Muy Buena", "B": "Buena", "R": "Regular", "M": "Mala", "MM": "Muy Mala"}
                 }
             };
