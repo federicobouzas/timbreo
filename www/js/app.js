@@ -81,32 +81,32 @@ angular.module('timbreo', ['ionic', 'ngCordova'])
             $scope.preguntas = {
                 1: {
                     tipo: 'simple.estado',
-                    texto: '¿Cómo evaluas hasta el momento la gestión del Presidente Mauricio Macri?',
+                    texto: '¿Cómo evaluás hasta el momento la gestión del Presidente Mauricio Macri?',
                     opciones: {"MB": "Muy Buena", "B": "Buena", "R": "Regular", "M": "Mala", "MM": "Muy Mala"}
                 },
                 2: {
                     tipo: 'simple.estado',
-                    texto: '¿Cómo evaluas hasta el momento la gestión de HRL como Jefe de Gobierno de la Ciudad?',
+                    texto: '¿Cómo evaluás hasta el momento la gestión de HRL como Jefe de Gobierno de la Ciudad?',
                     opciones: {"MB": "Muy Buena", "B": "Buena", "R": "Regular", "M": "Mala", "MM": "Muy Mala"}
                 }
             };
             $scope.preguntas2 = {
-                8: {
+                6: {
                     tipo: 'simple.estado',
                     texto: '¿Qué imagen tenés de Mauricio Macri?',
                     opciones: {"MB": "Muy Buena", "B": "Buena", "R": "Regular", "M": "Mala", "MM": "Muy Mala"}
                 },
-                9: {
+                7: {
                     tipo: 'simple.estado',
                     texto: '¿Qué imagen tenés de Horacio Rodriguez Larreta?',
                     opciones: {"MB": "Muy Buena", "B": "Buena", "R": "Regular", "M": "Mala", "MM": "Muy Mala"}
                 },
-                10: {
+                8: {
                     tipo: 'simple.estado',
                     texto: '¿Qué imagen tenés de Elisa Lilita Carrió?',
                     opciones: {"MB": "Muy Buena", "B": "Buena", "R": "Regular", "M": "Mala", "MM": "Muy Mala"}
                 },
-                11: {
+                9: {
                     tipo: 'simple.estado',
                     texto: '¿Qué imagen tenés de Martín Lousteau?',
                     opciones: {"MB": "Muy Buena", "B": "Buena", "R": "Regular", "M": "Mala", "MM": "Muy Mala"}
