@@ -74,6 +74,11 @@ angular.module('timbreo', ['ionic', 'ngCordova'])
                 }
                 $state.go("timbreo");
             };
+            navigator.geolocation.getCurrentPosition(function (position) {
+                console.log("ok GEO");
+            }, function (error) {
+                console.log('code: ' + error.code + '\nmessage: ' + error.message + '\n');
+            });
         })
 
         .controller('TimbreoController', function ($ionicScrollDelegate, $rootScope, $scope, PouchDB, $ionicPopup, $timeout, $state) {
