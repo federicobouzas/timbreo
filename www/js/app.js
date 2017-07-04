@@ -5,7 +5,8 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('timbreo', ['ionic', 'ngCordova'])
 
-        .run(function ($ionicPlatform) {
+        .run(function ($ionicPlatform, $rootScope) {
+            $rootScope.remoteURL = 'http://timbrea.me:5984/timbreo-caba';
             $ionicPlatform.ready(function () {
                 if (window.cordova && window.cordova.plugins.Keyboard) {
                     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -41,7 +42,7 @@ angular.module('timbreo', ['ionic', 'ngCordova'])
         })
 
         .controller('LoginController', function ($ionicPopup, $rootScope, $scope, $state, PouchDB) {
-            var dbLocal = new PouchDB('timbreo');
+            var dbLocal = new PouchDB('timbreo-caba');
             dbLocal.destroy();
             $scope.colores = ['Naranja', 'Azul', 'Verde', 'Rosa', 'Amarillo'];
             $scope.comunas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
@@ -50,7 +51,7 @@ angular.module('timbreo', ['ionic', 'ngCordova'])
             $scope.login = function () {
                 var errores = [];
                 if (!$rootScope.user.identificacion || $rootScope.user.identificacion == "") {
-                    errores.push("- Indentificación requerida.");
+                    errores.push("- Identificación requerida.");
                 }
                 if (!$rootScope.user.comuna || $rootScope.user.comuna == "") {
                     errores.push("- Comuna requerida");
@@ -76,8 +77,8 @@ angular.module('timbreo', ['ionic', 'ngCordova'])
         })
 
         .controller('TimbreoController', function ($ionicScrollDelegate, $rootScope, $scope, PouchDB, $ionicPopup, $timeout, $state) {
-            var dbLocal = new PouchDB('timbreo');
-            PouchDB.replicate(dbLocal, 'http://eideoos.com:5984/timbreo', {live: true, retry: true});
+            var dbLocal = new PouchDB('timbreo-caba');
+            PouchDB.replicate(dbLocal, $rootScope.remoteURL, {live: true, retry: true});
             $scope.preguntas = {
                 1: {
                     tipo: 'simple.estado',
