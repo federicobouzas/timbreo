@@ -6,7 +6,7 @@
 angular.module('timbreo', ['ionic', 'ngCordova'])
 
         .run(function ($ionicPlatform, $rootScope) {
-            $rootScope.remoteURL = 'http://timbrea.me:5984/timbreo-caba';
+            $rootScope.remoteURL = 'https://timbrea.me:5984/timbreo-caba';
             $ionicPlatform.ready(function () {
                 if (window.cordova && window.cordova.plugins.Keyboard) {
                     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
