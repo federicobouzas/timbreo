@@ -28,9 +28,33 @@
                     <span class="input-label">Número de Zona</span>
                     <input type="number" class="comuna" ng-model="user.mapa">
                 </label>
+                <div class="card">
+                    <div class="item item-divider item-text-wrap">Comuna</div>
+                    <div class="item item-text-wrap">
+                        <div class="button-bar">
+                            <a class="button" ng-click="seleccionar('comuna', comuna);" ng-repeat="comuna in [1, 2, 3, 4, 5]" ng-class="user.comuna == comuna ? 'button-dark' : 'button-outline button-stable'">{{comuna}}</a>
+                        </div>
+                        <div class="button-bar">
+                            <a class="button" ng-click="seleccionar('comuna', comuna);" ng-repeat="comuna in [6, 7, 8, 9, 10]" ng-class="user.comuna == comuna ? 'button-dark' : 'button-outline button-stable'">{{comuna}}</a>
+                        </div>
+                        <div class="button-bar last">
+                            <a class="button" ng-click="seleccionar('comuna', comuna);" ng-repeat="comuna in [11, 12, 13, 14, 15]" ng-class="user.comuna == comuna ? 'button-dark' : 'button-outline button-stable'">{{comuna}}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="item item-divider item-text-wrap">Color de Zona</div>
+                    <div class="item item-text-wrap">
+                        <div class="button-bar">
+                            <a class="button" ng-click="seleccionar('color', color);" ng-repeat="color in colores1" ng-class="user.color == color ? 'button-dark' : 'button-outline button-stable'">{{color}}</a>
+                        </div>
+                        <div class="button-bar last">
+                            <a class="button" ng-click="seleccionar('color', color);" ng-repeat="color in colores2" ng-class="user.color == color ? 'button-dark' : 'button-outline button-stable'">{{color}}</a>
+                        </div>
+                    </div>
+                </div>
                 <input type="submit" class="button button-block button-balanced" value="Ingresar" />
             </div>
         </form>
-        {{documentos}}
     </ion-content>
 </ion-view>

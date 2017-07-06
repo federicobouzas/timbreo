@@ -44,7 +44,9 @@ angular.module('timbreo', ['ionic', 'ngCordova'])
         .controller('LoginController', function ($ionicPopup, $rootScope, $scope, $state, PouchDB) {
             var dbLocal = new PouchDB('timbreo-caba');
             dbLocal.destroy();
-            $scope.colores = ['Naranja', 'Azul', 'Verde', 'Rosa', 'Amarillo'];
+            $scope.colores1 = ['Azul', 'Verde', 'Rosa'];
+            $scope.colores2 = ['Naranja', 'Amarillo'];
+            $scope.colores = $scope.colores1.concat($scope.colores2);
             $scope.comunas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
             //$rootScope.user = {'identificacion': 'federicobouzas@gmail.com', 'comuna': '5', 'color': 'Naranja', 'mapa': 22};
             $rootScope.user = {};
@@ -73,6 +75,9 @@ angular.module('timbreo', ['ionic', 'ngCordova'])
                     return;
                 }
                 $state.go("timbreo");
+            };
+            $scope.seleccionar = function (attribute, valor) {
+                $scope.user[attribute] = valor;
             };
             navigator.geolocation.getCurrentPosition(function (position) {
                 console.log("ok GEO");
